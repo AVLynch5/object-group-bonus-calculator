@@ -46,6 +46,8 @@ $('document').ready(function() {
   $('#showBonusButtn').on("click", function(){
     for (let employee of employees) {
       console.log(employeeBonus(employee));
+      let financialObj = employeeBonus(employee);
+      $('#listHere').append('<li>'+financialObj.name+', '+financialObj.bonusPercentage+'%, $'+financialObj.totalBonus+', $'+financialObj.totalCompensation+'</li>');
     }
   })
 })
