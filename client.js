@@ -42,10 +42,14 @@ const employees = [
 
 console.log( employees );
 
-for (let employee of employees) {
-  console.log(employeeBonus(employee));
-}
-
+$('document').ready(function() {
+  $('#showBonusButtn').on("click", function(){
+    for (let employee of employees) {
+      console.log(employeeBonus(employee));
+    }
+  })
+})
+  
 //for (let i=0; i<employees.length; i++) {
 //  console.log(employeeBonus(employees[i]));
 //}
