@@ -41,3 +41,76 @@ const employees = [
 // Ask questions when you don't.
 
 console.log( employees );
+
+for (let employee of employees) {
+  console.log(employeeBonus(employee));
+}
+
+//for (let i=0; i<employees.length; i++) {
+//  console.log(employeeBonus(employees[i]));
+//}
+
+function employeeBonus(employee) {
+//function input is a employee object, which is stored in employees array
+  let newObject = {};
+  newObject.name = employee.name;
+  newObject.bonusPercentage = bonusCalc(employee);
+  let realBonus = newObject.bonusPercentage*employee.annualSalary/100;//javascript treats employee.annualSalary (a string) as a number for *-/
+  newObject.totalBonus = Math.round(realBonus);
+  newObject.totalCompensation = newObject.totalBonus+parseInt(employee.annualSalary);//must parseInt to avoid concatenation
+  return newObject;
+}//end employeeBonus
+
+console.log(employeeBonus({
+  name: 'Scout',
+  employeeNumber: '6243',
+  annualSalary: '74750',
+  reviewRating: 5
+}));//expect newObject
+
+function bonusCalc(employee) {
+  //employee input is employee object, which is stored in employees array
+  bonusPercent = 0;
+  switch (employee.reviewRating) {
+    case 1:
+    case 2:
+      bonusPercent += 0;
+      break;
+    case 3:
+      bonusPercent += 4;
+      break;
+    case 4:
+      bonusPercent += 6;
+      break;
+    case 5:
+      bonusPercent += 10;
+      break;
+  }
+  if (employee.employeeNumber.length == 4) {
+    bonusPercent += 5;
+  };
+  if (parseInt(employee.annualSalary)>65000) {
+    bonusPercent = bonusPercent - 1;
+  };
+  if (bonusPercent > 13) {
+    bonusPercent = 13;
+  };
+  if (bonusPercent < 0) {
+    bonusPercent = 0;
+  };
+  return bonusPercent;
+}//end bonusCalc
+
+console.log(bonusCalc({
+  name: 'Mayella',
+  employeeNumber: '89068',
+  annualSalary: '35000',
+  reviewRating: 1
+}));//Expect a number = 0
+
+console.log(bonusCalc({
+  name: 'Scout',
+  employeeNumber: '6243',
+  annualSalary: '74750',
+  reviewRating: 5
+}));//Expect a number = 13
