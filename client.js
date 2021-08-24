@@ -47,7 +47,7 @@ $('document').ready(function() {
     for (let employee of employees) {
       console.log(employeeBonus(employee));
       let financialObj = employeeBonus(employee);
-      $('#listHere').append('<li>'+financialObj.name+', '+financialObj.bonusPercentage+'%, $'+financialObj.totalBonus+', $'+financialObj.totalCompensation+'</li>');
+      $('#listHere').append(`<li>Name: ${financialObj.name}; Bonus Percentage = ${financialObj.bonusPercentage}%; Bonus Sum = $${financialObj.totalBonus}; Total Compensation = $${financialObj.totalCompensation}</li>`);
     }
   })
 })
